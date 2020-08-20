@@ -1,12 +1,17 @@
-# Project Shopping Cart Initial Version Without Security
+# Project Deploy Shopping Cart
+
+A Student that completes this project shows they can:
+
 
 ## Introduction
 
-A shopping cart is a very common application so let's look at one. This Java Spring REST API application will provide endpoints for clients to perform the various CRUD operations on data sets contained in the application's data. Access to these endpoints will be secured using OAuth2 Authentication.
+For this project we are starting with your ending project from [Shopping Cart](https://github.com/LambdaSchool/java-shoppingcart.git). We are going to deploy this project to Heroku.
+
+ A shopping cart is a very common application so let's look at one. This Java Spring REST API application will provide endpoints for clients to perform the various CRUD operations on data sets contained in the application's data. Access to these endpoints will be secured using OAuth2 Authentication.
 
 ### Database layout
 
-You are creating a Java Spring REST API server which stores data in an H2 database. This table layout should be
+The table layout from your Shopping Cart Project should be
 
 ![Shopping Cart Database Layout](shoppingcartdb.png)
 
@@ -23,10 +28,11 @@ Table Relationships include
 * Users have a One to Many relationship with Carts. One user can have many shopping carts while each shopping cart is associated with only one user.
 * Carts have a Many to Many relationship with Products. Many Carts can have the same product and the same product can be in many carts.
 * The Carts - Products many to many relationship is modeled using the join table CartItems which contains the quantity of the product being ordered.
+* Users have a Many to Many relationship with Roles. A user can have many roles while many users can have the same role.
 
-You are to start with the initial application provided. This the code that is in the application works but code layout is not optimal, comments are sporadic and several features are missing from the application. For example, no code allows you to update a user's information. This is provided as an example of the type of code you might see in industry. Remember we have to start from what we are given!
+Remember the original code for the Shopping Cart application works but code layout is not optimal, comments are sporadic and several features are missing from the application. For example, no code allows you to update a user's information. This is provided as an example of the type of code you might see in industry. Remember we had to start from what we are given!
 
-The initial application has the following endpoints available.
+The application has the following endpoints available.
 
 <details>
 <summary>http://localhost:2019/users/users</summary>
@@ -512,3 +518,30 @@ STATUS OK
 ```
 
 </details>
+
+## Instructions
+
+* [ ] Please fork and clone this repository.
+* [ ] This repository does not have a starter project, so you must start with the Shopping Cart Application from your submission for the module project [https://github.com/LambdaSchool/java-shoppingcart.git](https://github.com/LambdaSchool/java-shoppingcart.git). Regularly commit and push your code as appropriate.
+* [ ] For the seed files provided in the original project, that all of the users' passwords are "LambdaLlama".
+
+### MVP
+
+* [ ] Required Unit Testing.
+  * [ ] Write at least 2 unit tests for the user service.
+  * [ ] Write at least 2 unit tests for the user controller.
+* [ ] Deploy the system to Heroku using PostgreSQL.
+* [ ] Create a file under main/resources called info.txt
+  * [ ] In this file put the CURL commands needed for the following endpoints.
+  * [ ] Include after each CURL command, its results.
+  * [ ] The CURL commands should be run against your deployment on Heroku.
+  * [ ] Routes for CURL command
+    * [ ] GET /users/myinfo
+    * [ ] GET /carts/user
+  
+### Stretch Goal
+
+  * [ ] Routes for CURL command
+    * [ ] POST /carts/create/product/1
+    * [ ] PUT /carts/update/cart/1/product/1
+    * [ ] DELETE /carts/delete/cart/1/product/1

@@ -1,20 +1,17 @@
-# Project Shopping Cart
+# Project Deploy Shopping Cart
 
 A Student that completes this project shows they can:
 
-* understand the flow and implement of Spring Security and OAuth2 to provide authentication for a project
-* read user information from the access token
-* understand the issues related to CORS and implement solutions to those issues
-* understand how to implement a new user and logout endpoints
-* use Postman to manually test Web APIs using Authentication
 
 ## Introduction
 
-A shopping cart is a very common application so let's look at one. This Java Spring REST API application will provide endpoints for clients to perform the various CRUD operations on data sets contained in the application's data. Access to these endpoints will be secured using OAuth2 Authentication.
+For this project we are starting with your ending project from [Shopping Cart](https://github.com/LambdaSchool/java-shoppingcart.git). We are going to deploy this project to Heroku.
+
+ A shopping cart is a very common application so let's look at one. This Java Spring REST API application will provide endpoints for clients to perform the various CRUD operations on data sets contained in the application's data. Access to these endpoints will be secured using OAuth2 Authentication.
 
 ### Database layout
 
-You are creating a Java Spring REST API server which stores data in an H2 database. The final table layout should be
+The table layout from your Shopping Cart Project should be
 
 ![Shopping Cart Database Layout](shoppingcartdb.png)
 
@@ -33,9 +30,9 @@ Table Relationships include
 * The Carts - Products many to many relationship is modeled using the join table CartItems which contains the quantity of the product being ordered.
 * Users have a Many to Many relationship with Roles. A user can have many roles while many users can have the same role.
 
-You are to start with the initial application provided. This the code that is in the application works but code layout is not optimal, comments are sporadic and several features are missing from the application. For example, no code allows you to update a user's information. This is provided as an example of the type of code you might see in industry. Remember we have to start from what we are given!
+Remember the original code for the Shopping Cart application works but code layout is not optimal, comments are sporadic and several features are missing from the application. For example, no code allows you to update a user's information. This is provided as an example of the type of code you might see in industry. Remember we had to start from what we are given!
 
-The initial application has the following endpoints available.
+The application has the following endpoints available.
 
 <details>
 <summary>http://localhost:2019/users/users</summary>
@@ -525,50 +522,26 @@ STATUS OK
 ## Instructions
 
 * [ ] Please fork and clone this repository.
-* [ ] This repository does have a starter project, so you must start with that application inside of the cloned repository folder. Regularly commit and push your code as appropriate.
-* [ ] A data.sql file has been provided with seed data. You can use this class directly or modify it to fit your models. However, the data found in the file is the seed data to use! Note that the initial application has its own data.sql file. For the final project, use the file provided in the root of the repository! Note that all of the users' passwords are "LambdaLlama".
+* [ ] This repository does not have a starter project, so you must start with the Shopping Cart Application from your submission for the module project [https://github.com/LambdaSchool/java-shoppingcart.git](https://github.com/LambdaSchool/java-shoppingcart.git). Regularly commit and push your code as appropriate.
+* [ ] For the seed files provided in the original project, that all of the users' passwords are "LambdaLlama".
 
 ### MVP
 
-* [ ] Add OAuth2 Security to the application
-  * [ ] Add the necessary dependencies
-  * [ ] Add the models to represent Roles and the join table between Roles and Users
-    * [ ] Two roles will be used - Admin for access to all of the system and User for access to only the authenticated user's information
-  * [ ] In the existing User model add fields for password and roles including associated getters, setters, and other needed methods
-  * [ ] Add findByName to the User Service with associated repository entry
-  * [ ] Add the necessary helper functions
-  * [ ] Add the SecurityUserService service
-  * [ ] Add and update the necessary configuration files
-* [ ] The initial endpoints are affected by security as follows
-  * [ ] http://localhost:2019/users/users
-    * [ ] Only users with role Admin can access this endpoint
-  * [ ] http://localhost:2019/users/user/1
-    * [ ] Only users with role Admin can access this endpoint
-  * [ ] POST http://localhost:2019/users/user
-    * [ ] Only users with role Admin can access this endpoint
-  * [ ] DELETE http://localhost:2019/users/user/1
-    * [ ] Only users with role Admin can access this endpoint
-  * [ ] http://localhost:2019/carts/user
-    * [ ] Drop the path variable and return the information for authenticated user
-  * [ ] http://localhost:2019/carts/cart/1
-    * [ ] Only users with role Admin can access this endpoint
-  * [ ] POST http://localhost:2019/carts/create/product/1
-    * [ ] Drop the user path variable and create a new cart for the authenticated user
-  * [ ] PUT http://localhost:2019/carts/update/cart/1/product/1
-    * [ ] Any user with role Admin can access this endpoint. Any user with role User can only access carts that they own. This would similar to the function in our usermodel under OAuth2 for updating a user using the helper.isAuthorizedToMakeChange() method. You can get the current authenticated use from the userAuditor field!
-  * [ ] DELETE http://localhost:2019/carts/delete/cart/1/product/1
-    * [ ] Any user with role Admin can access this endpoint. Any user with role User can only access carts that they own.  This would similar to the function in our usermodel under OAuth2 for updating a user using the helper.isAuthorizedToMakeChange() method. You can get the current authenticated use from the userAuditor field!
-  * [ ] http://localhost:2019/products/products
-    * [ ] Only users with role Admin can access this endpoint
-  * [ ] http://localhost:2019/products/product/1
-    * [ ] Only users with role Admin can access this endpoint
-  * [ ] POST http://localhost:2019/products/product
-    * [ ] Only users with role Admin can access this endpoint
-  * [ ] PUT http://localhost:2019/products/product/1
-    * [ ] Only users with role Admin can access this endpoint
-  * [ ] DELETE http://localhost:2019/products/product/1
-* [ ] Add a new endpoint
-  * [ ] http://localhost:2019/users/myinfo
-    * [ ] Any authenticated user can access this endpoint and it will return the authenticated users information
+* [ ] Required Unit Testing.
+  * [ ] Write at least 2 unit tests for the user service.
+  * [ ] Write at least 2 unit tests for the user controller.
+* [ ] Deploy the system to Heroku using PostgreSQL.
+* [ ] Create a file under main/resources called info.txt
+  * [ ] In this file put the CURL commands needed for the following endpoints.
+  * [ ] Include after each CURL command, its results.
+  * [ ] The CURL commands should be run against your deployment on Heroku.
+  * [ ] Routes for CURL command
+    * [ ] GET /users/myinfo
+    * [ ] GET /carts/user
+  
+### Stretch Goal
 
-For MVP, you do not need to add any more endpoints than those listed above!!!
+  * [ ] Routes for CURL command
+    * [ ] POST /carts/create/product/1
+    * [ ] PUT /carts/update/cart/1/product/1
+    * [ ] DELETE /carts/delete/cart/1/product/1

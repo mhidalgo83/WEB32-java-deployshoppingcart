@@ -1,6 +1,7 @@
 package com.lambdaschool.shoppingcart.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lambdaschool.shoppingcart.config.DBConfig;
 import com.lambdaschool.shoppingcart.models.User;
 import com.lambdaschool.shoppingcart.services.UserService;
 import org.junit.After;
@@ -14,11 +15,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +29,12 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
+
 @WithMockUser(username = "admin", roles = {"USER", "ADMIN"})
 public class UserControllerTest {
+
 
     @Autowired
     private MockMvc mockMvc;
